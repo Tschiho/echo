@@ -1,0 +1,16 @@
+body {
+	background-color: #f4f5f6;
+}
+
+img {
+    content: normal !important;
+}
+
+.clx::before, .clx::after{
+  display: table;
+  content: '';
+}
+
+.clx::after{
+	clear: both;
+}

@@ -1,31 +1,33 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div id="app" :class="audio.data ? 'musicBar-on':'' ">
+    <keep-alive>
+      <router-view />
+    </keep-alive>
+    
+    <MusicBar />
+    <!-- 加载进度条 -->
+    <vue-progress-bar></vue-progress-bar>
+    
   </div>
 </template>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
+<script>
+	import MusicBar from '@/components/MusicBar'
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+	export default {
+      components: {
+      	MusicBar
+      },
+      computed: {
+        audio() {
+        	return this.$store.state.audio
+        }
+      }
+	}
+</script>
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+<style scoped>
+  .musicBar-on{
+  	padding-bottom: 96px;
+  }
 </style>
